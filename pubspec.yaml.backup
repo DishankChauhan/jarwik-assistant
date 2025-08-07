@@ -1,0 +1,80 @@
+name: jarwik
+description: "Jarwik - AI Voice Assistant for Email & Calendar Management"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # UI & Navigation
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.10
+  google_fonts: ^6.2.1
+  flutter_animate: ^4.5.0
+  
+  # Voice & Speech
+  speech_to_text: ^6.6.0
+  flutter_tts: ^4.0.2
+  avatar_glow: ^3.0.1
+  
+  # HTTP & API
+  http: ^1.2.2
+  dio: ^5.4.3+1
+  
+  # Authentication & Security
+  google_sign_in: ^6.2.1
+  firebase_core: ^3.4.1
+  firebase_auth: ^5.1.0
+  local_auth: ^2.1.8
+  
+  # Email & Calendar APIs
+  googleapis: ^13.2.0
+  googleapis_auth: ^1.6.0
+  
+  # State Management
+  provider: ^6.1.2
+  riverpod: ^2.5.1
+  flutter_riverpod: ^2.5.1
+  
+  # Local Storage
+  shared_preferences: ^2.2.3
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  flutter_secure_storage: ^9.2.2
+  
+  # Notifications
+  flutter_local_notifications: ^17.2.2
+  permission_handler: ^11.3.1
+  
+  # Utility
+  intl: ^0.19.0
+  uuid: ^4.4.0
+  connectivity_plus: ^6.0.3
+  device_info_plus: ^10.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.12
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/lottie/
+  
+  fonts:
+    - family: Jarwik
+      fonts:
+        - asset: assets/fonts/jarwik-regular.ttf
+        - asset: assets/fonts/jarwik-bold.ttf
+          weight: 700
