@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../widgets/voice_assistant_button.dart';
 
 class SplashPage extends ConsumerStatefulWidget {
   const SplashPage({super.key});
@@ -40,25 +39,16 @@ class _SplashPageState extends ConsumerState<SplashPage>
 
     _animationController.forward();
 
-    // Navigate to onboarding after animation
+    // Navigate to voice assistant after animation
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
-        _navigateToOnboarding();
+        _navigateToVoiceAssistant();
       }
     });
   }
 
-  void _navigateToOnboarding() {
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            const OnboardingPage(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(opacity: animation, child: child);
-        },
-        transitionDuration: const Duration(milliseconds: 500),
-      ),
-    );
+  void _navigateToVoiceAssistant() {
+    Navigator.of(context).pushReplacementNamed('/voice-assistant');
   }
 
   @override
@@ -72,7 +62,7 @@ class _SplashPageState extends ConsumerState<SplashPage>
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.primary,
+      backgroundColor: theme.colorScheme.surface,
       body: AnimatedBuilder(
         animation: _animationController,
         builder: (context, child) {
@@ -84,90 +74,58 @@ class _SplashPageState extends ConsumerState<SplashPage>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-<<<<<<< HEAD
-                    // App Icon/Logo
-=======
                     // App Logo
->>>>>>> 9b168b8 (pushed other files)
                     Container(
                       width: 120,
                       height: 120,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: theme.colorScheme.primary,
                         borderRadius: BorderRadius.circular(30),
                         boxShadow: [
                           BoxShadow(
-<<<<<<< HEAD
-                            color: Colors.black.withOpacity(0.1),
-=======
-                            color: Colors.white.withOpacity(0.2),
->>>>>>> 9b168b8 (pushed other files)
+                            color: theme.colorScheme.primary.withOpacity(0.3),
                             blurRadius: 20,
                             offset: const Offset(0, 10),
                           ),
                         ],
                       ),
-<<<<<<< HEAD
-                      child: const Icon(
-                        Icons.mic,
-                        size: 60,
-                        color: Color(0xFF6366F1),
-=======
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(30),
                         child: Image.asset(
                           'assets/images/jarwik_logo.png',
                           fit: BoxFit.contain,
                           errorBuilder: (context, error, stackTrace) {
-                            return const Icon(
+                            return Icon(
                               Icons.mic,
                               size: 60,
-                              color: Color(0xFF000000),
+                              color: theme.colorScheme.onPrimary,
                             );
                           },
                         ),
->>>>>>> 9b168b8 (pushed other files)
                       ),
                     ),
                     const SizedBox(height: 32),
 
                     // App Name
                     Text(
-<<<<<<< HEAD
-                      'Jarwik',
-                      style: GoogleFonts.inter(
-                        fontSize: 42,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        letterSpacing: -0.5,
-=======
                       'JARWIK',
                       style: GoogleFonts.sourceCodePro(
                         fontSize: 42,
                         fontWeight: FontWeight.w700,
-                        color: Colors.white,
+                        color: theme.colorScheme.onSurface,
                         letterSpacing: 2.0,
->>>>>>> 9b168b8 (pushed other files)
                       ),
                     ),
                     const SizedBox(height: 8),
 
                     // Tagline
                     Text(
-<<<<<<< HEAD
-                      'Your AI Voice Assistant',
-                      style: GoogleFonts.inter(
-                        fontSize: 16,
-                        color: Colors.white.withOpacity(0.8),
-                        fontWeight: FontWeight.w400,
-=======
                       'AI VOICE ASSISTANT',
                       style: GoogleFonts.sourceCodePro(
                         fontSize: 14,
-                        color: Colors.white.withOpacity(0.8),
+                        color: theme.colorScheme.onSurface.withOpacity(0.7),
                         fontWeight: FontWeight.w400,
                         letterSpacing: 1.2,
->>>>>>> 9b168b8 (pushed other files)
                       ),
                     ),
                     const SizedBox(height: 48),
@@ -178,7 +136,7 @@ class _SplashPageState extends ConsumerState<SplashPage>
                       height: 32,
                       child: CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(
-                          Colors.white.withOpacity(0.8),
+                          theme.colorScheme.primary,
                         ),
                         strokeWidth: 2,
                       ),
@@ -189,99 +147,6 @@ class _SplashPageState extends ConsumerState<SplashPage>
             ),
           );
         },
-      ),
-    );
-  }
-}
-
-// Placeholder Onboarding Page
-class OnboardingPage extends StatelessWidget {
-  const OnboardingPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Icon(Icons.mic, size: 100, color: Color(0xFF6366F1)),
-              const SizedBox(height: 32),
-              Text(
-                'Welcome to Jarwik',
-                style: Theme.of(context).textTheme.displayMedium,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'Manage your emails and calendar hands-free with AI-powered voice commands.',
-                style: Theme.of(context).textTheme.bodyLarge,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 48),
-
-              // Voice Assistant Demo Button
-              const VoiceAssistantButton(),
-
-              const SizedBox(height: 32),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => const HomePage()),
-                    );
-                  },
-                  child: const Text('Get Started'),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// Placeholder Home Page
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Jarwik Dashboard'),
-        actions: [
-          IconButton(icon: const Icon(Icons.account_circle), onPressed: () {}),
-        ],
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.construction, size: 64, color: Color(0xFF6366F1)),
-            SizedBox(height: 16),
-            Text(
-              'MVP Under Construction',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Core features coming soon...',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 32),
-<<<<<<< HEAD
-            const VoiceAssistantButton(),
-=======
-            VoiceAssistantButton(),
->>>>>>> 9b168b8 (pushed other files)
-          ],
-        ),
       ),
     );
   }
