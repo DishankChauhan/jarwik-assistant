@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
+<<<<<<< HEAD
   // Brand Colors
   static const Color primaryColor = Color(0xFF6366F1); // Indigo
   static const Color secondaryColor = Color(0xFF8B5CF6); // Purple
@@ -23,6 +24,29 @@ class AppTheme {
   static const Color textSecondary = Color(0xFF6B7280);
   static const Color darkTextPrimary = Color(0xFFF9FAFB);
   static const Color darkTextSecondary = Color(0xFFD1D5DB);
+=======
+  // Jarwik Brand Colors - Black & White with Gold Accent
+  static const Color primaryColor = Color(0xFF000000); // Pure Black
+  static const Color secondaryColor = Color(0xFFFFFFFF); // Pure White
+  static const Color accentColor = Color(0xFFFFD700); // Gold accent for premium feel
+
+  // Neutral Colors - Black & White Theme
+  static const Color backgroundColor = Color(0xFFFFFFFF); // White background
+  static const Color surfaceColor = Color(0xFFFAFAFA); // Off-white surface
+  static const Color darkBackgroundColor = Color(0xFF000000); // Pure black
+  static const Color darkSurfaceColor = Color(0xFF111111); // Near black surface
+
+  // Status Colors - Minimal palette
+  static const Color successColor = Color(0xFF22C55E); // Green
+  static const Color warningColor = Color(0xFFF59E0B); // Amber
+  static const Color errorColor = Color(0xFFEF4444); // Red
+
+  // Text Colors - High contrast
+  static const Color textPrimary = Color(0xFF000000); // Black text on white
+  static const Color textSecondary = Color(0xFF666666); // Dark gray
+  static const Color darkTextPrimary = Color(0xFFFFFFFF); // White text on black
+  static const Color darkTextSecondary = Color(0xFFCCCCCC); // Light gray
+>>>>>>> 9b168b8 (pushed other files)
 
   static ThemeData get lightTheme {
     return ThemeData(
@@ -30,6 +54,7 @@ class AppTheme {
       brightness: Brightness.light,
       colorScheme: const ColorScheme.light(
         primary: primaryColor,
+<<<<<<< HEAD
         secondary: secondaryColor,
         tertiary: accentColor,
         surface: surfaceColor,
@@ -119,6 +144,15 @@ class AppTheme {
           fontWeight: FontWeight.w600,
           color: textPrimary,
         ),
+=======
+        secondary: accentColor,
+        tertiary: accentColor,
+        surface: surfaceColor,
+        error: errorColor,
+        onPrimary: Colors.white,
+        onSecondary: Colors.black,
+        onSurface: textPrimary,
+>>>>>>> 9b168b8 (pushed other files)
       ),
     );
   }
@@ -128,6 +162,7 @@ class AppTheme {
       useMaterial3: true,
       brightness: Brightness.dark,
       colorScheme: const ColorScheme.dark(
+<<<<<<< HEAD
         primary: primaryColor,
         secondary: secondaryColor,
         tertiary: accentColor,
@@ -220,6 +255,16 @@ class AppTheme {
           fontWeight: FontWeight.w600,
           color: darkTextPrimary,
         ),
+=======
+        primary: Colors.white,
+        secondary: accentColor,
+        tertiary: accentColor,
+        surface: darkSurfaceColor,
+        error: errorColor,
+        onPrimary: Colors.black,
+        onSecondary: Colors.black,
+        onSurface: darkTextPrimary,
+>>>>>>> 9b168b8 (pushed other files)
       ),
     );
   }

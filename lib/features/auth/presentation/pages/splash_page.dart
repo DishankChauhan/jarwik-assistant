@@ -84,7 +84,11 @@ class _SplashPageState extends ConsumerState<SplashPage>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+<<<<<<< HEAD
                     // App Icon/Logo
+=======
+                    // App Logo
+>>>>>>> 9b168b8 (pushed other files)
                     Container(
                       width: 120,
                       height: 120,
@@ -93,39 +97,77 @@ class _SplashPageState extends ConsumerState<SplashPage>
                         borderRadius: BorderRadius.circular(30),
                         boxShadow: [
                           BoxShadow(
+<<<<<<< HEAD
                             color: Colors.black.withOpacity(0.1),
+=======
+                            color: Colors.white.withOpacity(0.2),
+>>>>>>> 9b168b8 (pushed other files)
                             blurRadius: 20,
                             offset: const Offset(0, 10),
                           ),
                         ],
                       ),
+<<<<<<< HEAD
                       child: const Icon(
                         Icons.mic,
                         size: 60,
                         color: Color(0xFF6366F1),
+=======
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: Image.asset(
+                          'assets/images/jarwik_logo.png',
+                          fit: BoxFit.contain,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Icon(
+                              Icons.mic,
+                              size: 60,
+                              color: Color(0xFF000000),
+                            );
+                          },
+                        ),
+>>>>>>> 9b168b8 (pushed other files)
                       ),
                     ),
                     const SizedBox(height: 32),
 
                     // App Name
                     Text(
+<<<<<<< HEAD
                       'Jarwik',
                       style: GoogleFonts.inter(
                         fontSize: 42,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                         letterSpacing: -0.5,
+=======
+                      'JARWIK',
+                      style: GoogleFonts.sourceCodePro(
+                        fontSize: 42,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                        letterSpacing: 2.0,
+>>>>>>> 9b168b8 (pushed other files)
                       ),
                     ),
                     const SizedBox(height: 8),
 
                     // Tagline
                     Text(
+<<<<<<< HEAD
                       'Your AI Voice Assistant',
                       style: GoogleFonts.inter(
                         fontSize: 16,
                         color: Colors.white.withOpacity(0.8),
                         fontWeight: FontWeight.w400,
+=======
+                      'AI VOICE ASSISTANT',
+                      style: GoogleFonts.sourceCodePro(
+                        fontSize: 14,
+                        color: Colors.white.withOpacity(0.8),
+                        fontWeight: FontWeight.w400,
+                        letterSpacing: 1.2,
+>>>>>>> 9b168b8 (pushed other files)
                       ),
                     ),
                     const SizedBox(height: 48),
@@ -233,7 +275,11 @@ class HomePage extends StatelessWidget {
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 32),
+<<<<<<< HEAD
             const VoiceAssistantButton(),
+=======
+            VoiceAssistantButton(),
+>>>>>>> 9b168b8 (pushed other files)
           ],
         ),
       ),
