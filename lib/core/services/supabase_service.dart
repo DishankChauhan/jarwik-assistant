@@ -21,10 +21,8 @@ class SupabaseService {
 
   /// Initialize Supabase
   static Future<void> initialize() async {
-    await Supabase.initialize(
-      url: 'YOUR_SUPABASE_URL', // Replace with your Supabase URL
-      anonKey: 'YOUR_SUPABASE_ANON_KEY', // Replace with your Supabase anon key
-    );
+    // This is now handled in main.dart with environment variables
+    // No need for manual initialization here
   }
 
   /// Sign up with email and password
@@ -34,13 +32,38 @@ class SupabaseService {
     String? fullName,
   }) async {
     try {
+      print('Attempting to sign up user: $email'); // Debug log
+
       final response = await client.auth.signUp(
         email: email,
         password: password,
         data: fullName != null ? {'full_name': fullName} : null,
+        emailRedirectTo:
+            null, // For development - can set a custom redirect URL later
       );
+
+      print(
+        'Sign up response - User: ${response.user?.email}, Session: ${response.session != null}',
+      ); // Debug log
+
+      if (response.user == null) {
+        throw Exception('Sign up failed: No user returned from Supabase');
+      }
+
+      // For development: If email confirmation is enabled but user can't receive emails
+      // we can check if the user exists but isn't confirmed
+      if (response.session == null && response.user != null) {
+        print(
+          'User created but email confirmation required. Check your email (including spam folder).',
+        );
+        print(
+          'If you can\'t receive emails, you may need to configure email settings in Supabase dashboard.',
+        );
+      }
+
       return response;
     } catch (e) {
+      print('Supabase sign up error: $e'); // Debug log
       throw Exception('Sign up failed: $e');
     }
   }
@@ -51,12 +74,24 @@ class SupabaseService {
     required String password,
   }) async {
     try {
+      print('Attempting to sign in user: $email'); // Debug log
+
       final response = await client.auth.signInWithPassword(
         email: email,
         password: password,
       );
+
+      print(
+        'Sign in response - User: ${response.user?.email}, Session: ${response.session != null}',
+      ); // Debug log
+
+      if (response.user == null) {
+        throw Exception('Sign in failed: Invalid credentials');
+      }
+
       return response;
     } catch (e) {
+      print('Supabase sign in error: $e'); // Debug log
       throw Exception('Sign in failed: $e');
     }
   }
@@ -64,10 +99,7 @@ class SupabaseService {
   /// Sign in with Google
   Future<bool> signInWithGoogle() async {
     try {
-      final response = await client.auth.signInWithOAuth(
-        OAuthProvider.google,
-        redirectTo: 'io.supabase.jarwik://login-callback/',
-      );
+      final response = await client.auth.signInWithOAuth(OAuthProvider.google);
       return response;
     } catch (e) {
       throw Exception('Google sign in failed: $e');
@@ -89,6 +121,19 @@ class SupabaseService {
       await client.auth.resetPasswordForEmail(email);
     } catch (e) {
       throw Exception('Password reset failed: $e');
+    }
+  }
+
+  /// Resend email verification
+  Future<void> resendVerification(String email, String password) async {
+    try {
+      // This will trigger another verification email to be sent
+      await client.auth.signUp(email: email, password: password);
+    } catch (e) {
+      // If user already exists, that's expected
+      if (!e.toString().toLowerCase().contains('already registered')) {
+        throw Exception('Failed to resend verification: $e');
+      }
     }
   }
 

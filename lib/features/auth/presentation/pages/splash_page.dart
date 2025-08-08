@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../providers/auth_provider.dart';
 
 class SplashPage extends ConsumerStatefulWidget {
   const SplashPage({super.key});
@@ -39,16 +40,22 @@ class _SplashPageState extends ConsumerState<SplashPage>
 
     _animationController.forward();
 
-    // Navigate to voice assistant after animation
+    // Check authentication after animation
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
-        _navigateToVoiceAssistant();
+        _checkAuthAndNavigate();
       }
     });
   }
 
-  void _navigateToVoiceAssistant() {
-    Navigator.of(context).pushReplacementNamed('/voice-assistant');
+  void _checkAuthAndNavigate() {
+    final authState = ref.read(authProvider);
+
+    if (authState.isAuthenticated) {
+      Navigator.of(context).pushReplacementNamed('/home');
+    } else {
+      Navigator.of(context).pushReplacementNamed('/auth');
+    }
   }
 
   @override

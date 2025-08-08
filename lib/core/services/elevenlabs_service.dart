@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:typed_data';
+import '../config/app_config.dart';
 
 /// ElevenLabs service provider
 final elevenLabsServiceProvider = Provider<ElevenLabsService>((ref) {
@@ -10,8 +11,6 @@ final elevenLabsServiceProvider = Provider<ElevenLabsService>((ref) {
 
 class ElevenLabsService {
   static const String _baseUrl = 'https://api.elevenlabs.io/v1';
-  static const String _apiKey =
-      'YOUR_ELEVENLABS_API_KEY'; // Replace with your API key
 
   late final Dio _dio;
 
@@ -22,7 +21,7 @@ class ElevenLabsService {
         headers: {
           'Accept': 'audio/mpeg',
           'Content-Type': 'application/json',
-          'xi-api-key': _apiKey,
+          'xi-api-key': AppConfig.elevenLabsApiKey,
         },
       ),
     );
